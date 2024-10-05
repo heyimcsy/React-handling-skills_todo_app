@@ -34,6 +34,12 @@ const App = () => {
       nextId.current += 1
     },[todos]
   )
-  return <TodoTemplate><TodoInsert onInsert={onInsert}/><TodoList todos={todos}/></TodoTemplate>
+
+  const onRemove = useCallback(
+    id => {
+      setTodos(todos.filter(todo => todo.id !== id))
+    },[todos]
+  )
+  return <TodoTemplate><TodoInsert onInsert={onInsert}/><TodoList todos={todos}  onRemove={onRemove}/></TodoTemplate>
 }
 export default App;
